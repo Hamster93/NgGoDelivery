@@ -4,15 +4,12 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          MCS2 Dashboard
+          NgGo Dashboard
         </h1>
       </div>
     </div>
   </section>
   <div class="columns container is-fluid">
-    <units class="column"></units>
-    <emergencies class="column"></emergencies>
-    <users class="column"></users>
     <maps class="column"></maps>
   </div>
   <send-location></send-location>
@@ -20,18 +17,12 @@
 </template>
 
 <script>
-import Units from '@/components/Units'
-import Emergencies from '@/components/Emergencies'
-import Users from '@/components/Users'
 import Maps from '@/components/Maps'
 import SendLocation from '@/components/SendLocation'
 
 export default {
   name: 'Dashboard',
   components: {
-    Units,
-    Emergencies,
-    Users,
     Maps,
     SendLocation
   },

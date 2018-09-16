@@ -8,11 +8,7 @@
 
 <script>
 import io from 'socket.io-client'
-const socket = io.connect('http://localhost:8000', {
-  transports: ['websocket'],
-  forceNew: true,
-  reconnection: false
-})
+const socket = io.connect('http://localhost:9000')
 export default {
   data() {
     return {

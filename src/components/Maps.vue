@@ -5,21 +5,16 @@
 </template>
 
 <script>
-import dataService from '@/services/data.service'
 import io from 'socket.io-client'
-const socket = io.connect('http://localhost:8000', {
-  transports: ['websocket'],
-  forceNew: true,
-  reconnection: false
-})
+const socket = io.connect('http://localhost:9000')
 
 export default {
   data () {
     return {
       name: "Map",
       markerCoordinates: [{
-        latitude: 47.6603782,
-        longitude: 9.154525
+        latitude: 47.3889663,
+        longitude: 8.5133641,
       }],
       bounds: null,
       markers: [],
@@ -43,7 +38,8 @@ export default {
       icon: 'static/unit.png'
     })
 
-    socket.on('location_update', (data) => {
+    socket.on('on_new_task', (data) => {
+      console.log('EVENT  ------   ON_NEW_TASK');
       if (!markers[data._id]) {
         markers[data._id] = new maps.Marker({
           map: this.map,
@@ -51,21 +47,9 @@ export default {
         })
       }
 
-      const position = new maps.LatLng(data.location.lat, data.location.long)
+      const position = new maps.LatLng(data.location.latitude, data.location.longitude)
       console.log(position)
       markers[data._id].setPosition(position)
-    })
-
-    dataService.fetchAllEmergencies()
-    .then(emergencies => {
-      emergencies.forEach((emergency) => {
-        const position = new maps.LatLng(emergency.location.lat, emergency.location.lng);
-        const marker = new maps.Marker({
-          position,
-          map: this.map,
-          title: emergency.name
-        })
-      })
     })
   }
 }
