@@ -12,23 +12,22 @@
   <div class="columns container is-fluid">
     <maps class="column"></maps>
   </div>
-  <send-location></send-location>
 </div>
 </template>
 
 <script>
 import Maps from '@/components/Maps'
-import SendLocation from '@/components/SendLocation'
 
 export default {
   name: 'Dashboard',
+  data () {
+    return {
+      giveaway: null
+    }
+  },
   components: {
     Maps,
-    SendLocation
   },
-  mount() {
-
-  }
 }
 </script>
 
